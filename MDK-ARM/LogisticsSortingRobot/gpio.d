@@ -1,0 +1,34 @@
+logisticssortingrobot\gpio.o: ../Core/Src/gpio.c
+logisticssortingrobot\gpio.o: ../Core/Inc/gpio.h
+logisticssortingrobot\gpio.o: ../Core/Inc/main.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
+logisticssortingrobot\gpio.o: ../Core/Inc/stm32f4xx_hal_conf.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
+logisticssortingrobot\gpio.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+logisticssortingrobot\gpio.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h
+logisticssortingrobot\gpio.o: ../Drivers/CMSIS/Include/core_cm4.h
+logisticssortingrobot\gpio.o: E:\Keil v5.36\ARM\ARMCC\Bin\..\include\stdint.h
+logisticssortingrobot\gpio.o: ../Drivers/CMSIS/Include/cmsis_version.h
+logisticssortingrobot\gpio.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+logisticssortingrobot\gpio.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+logisticssortingrobot\gpio.o: ../Drivers/CMSIS/Include/mpu_armv7.h
+logisticssortingrobot\gpio.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
+logisticssortingrobot\gpio.o: E:\Keil v5.36\ARM\ARMCC\Bin\..\include\stddef.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+logisticssortingrobot\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
