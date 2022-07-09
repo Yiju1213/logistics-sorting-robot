@@ -1,5 +1,5 @@
-logisticssortingrobot\stepper.o: ..\Peripheral_Module\Stepper.c
-logisticssortingrobot\stepper.o: ..\Peripheral_Module\Stepper.h
+logisticssortingrobot\stepper.o: ..\Layer_FunctionModule\Stepper.c
+logisticssortingrobot\stepper.o: ..\Layer_FunctionModule\Stepper.h
 logisticssortingrobot\stepper.o: ../Core/Inc/main.h
 logisticssortingrobot\stepper.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 logisticssortingrobot\stepper.o: ../Core/Inc/stm32f4xx_hal_conf.h

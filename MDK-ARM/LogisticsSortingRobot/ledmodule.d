@@ -1,5 +1,5 @@
-logisticssortingrobot\ledmodule.o: ..\Peripheral_Module\LEDModule.c
-logisticssortingrobot\ledmodule.o: ..\Peripheral_Module\LEDModule.h
+logisticssortingrobot\ledmodule.o: ..\Layer_FunctionModule\LEDModule.c
+logisticssortingrobot\ledmodule.o: ..\Layer_FunctionModule\LEDModule.h
 logisticssortingrobot\ledmodule.o: E:\Keil v5.36\ARM\ARMCC\Bin\..\include\stdint.h
 logisticssortingrobot\ledmodule.o: ../Core/Inc/main.h
 logisticssortingrobot\ledmodule.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h

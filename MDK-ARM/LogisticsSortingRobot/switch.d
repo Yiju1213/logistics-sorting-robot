@@ -1,5 +1,5 @@
-logisticssortingrobot\switch.o: ..\Peripheral_Module\Switch.c
-logisticssortingrobot\switch.o: ..\Peripheral_Module\Switch.h
+logisticssortingrobot\switch.o: ..\Layer_FunctionModule\Switch.c
+logisticssortingrobot\switch.o: ..\Layer_FunctionModule\Switch.h
 logisticssortingrobot\switch.o: E:\Keil v5.36\ARM\ARMCC\Bin\..\include\stdint.h
 logisticssortingrobot\switch.o: ../Core/Inc/main.h
 logisticssortingrobot\switch.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h

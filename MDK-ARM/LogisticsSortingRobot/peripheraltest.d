@@ -1,5 +1,5 @@
-logisticssortingrobot\peripheraltest.o: ..\Peripheral_Module\PeripheralTest.c
-logisticssortingrobot\peripheraltest.o: ..\Peripheral_Module\PeripheralTest.h
+logisticssortingrobot\peripheraltest.o: ..\Layer_FunctionModule\PeripheralTest.c
+logisticssortingrobot\peripheraltest.o: ..\Layer_FunctionModule\PeripheralTest.h
 logisticssortingrobot\peripheraltest.o: ../Core/Inc/main.h
 logisticssortingrobot\peripheraltest.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 logisticssortingrobot\peripheraltest.o: ../Core/Inc/stm32f4xx_hal_conf.h
@@ -47,11 +47,5 @@ logisticssortingrobot\peripheraltest.o: ../Middlewares/Third_Party/FreeRTOS/Sour
 logisticssortingrobot\peripheraltest.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 logisticssortingrobot\peripheraltest.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 logisticssortingrobot\peripheraltest.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
-logisticssortingrobot\peripheraltest.o: ..\Peripheral_Module\KeyModule.h
-logisticssortingrobot\peripheraltest.o: ..\Peripheral_Module\LEDModule.h
-logisticssortingrobot\peripheraltest.o: ..\Peripheral_Module\Serial.h
-logisticssortingrobot\peripheraltest.o: ..\Peripheral_Module\ULtraSonic.h
-logisticssortingrobot\peripheraltest.o: ../Core/Inc/tim.h
-logisticssortingrobot\peripheraltest.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
-logisticssortingrobot\peripheraltest.o: ..\Peripheral_Module\Stepper.h
-logisticssortingrobot\peripheraltest.o: ..\Peripheral_Module\Switch.h
+logisticssortingrobot\peripheraltest.o: ..\Layer_FunctionModule\KeyModule.h
+logisticssortingrobot\peripheraltest.o: ..\Layer_FunctionModule\LEDModule.h

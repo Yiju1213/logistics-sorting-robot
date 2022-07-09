@@ -1,5 +1,5 @@
-logisticssortingrobot\keymodule.o: ..\Peripheral_Module\KeyModule.c
-logisticssortingrobot\keymodule.o: ..\Peripheral_Module\KeyModule.h
+logisticssortingrobot\keymodule.o: ..\Layer_FunctionModule\KeyModule.c
+logisticssortingrobot\keymodule.o: ..\Layer_FunctionModule\KeyModule.h
 logisticssortingrobot\keymodule.o: E:\Keil v5.36\ARM\ARMCC\Bin\..\include\stdint.h
 logisticssortingrobot\keymodule.o: ../Core/Inc/main.h
 logisticssortingrobot\keymodule.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h

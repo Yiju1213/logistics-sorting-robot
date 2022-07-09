@@ -1,7 +1,7 @@
-logisticssortingrobot\serial.o: ..\Peripheral_Module\Serial.c
-logisticssortingrobot\serial.o: ..\Peripheral_Module\Serial.h
+logisticssortingrobot\serial.o: ..\Layer_FunctionModule\Serial.c
+logisticssortingrobot\serial.o: ..\Layer_FunctionModule\Serial.h
 logisticssortingrobot\serial.o: E:\Keil v5.36\ARM\ARMCC\Bin\..\include\stdint.h
-logisticssortingrobot\serial.o: ..\Peripheral_Module\LEDModule.h
+logisticssortingrobot\serial.o: ..\Layer_FunctionModule\LEDModule.h
 logisticssortingrobot\serial.o: E:\Keil v5.36\ARM\ARMCC\Bin\..\include\stdarg.h
 logisticssortingrobot\serial.o: E:\Keil v5.36\ARM\ARMCC\Bin\..\include\stdio.h
 logisticssortingrobot\serial.o: E:\Keil v5.36\ARM\ARMCC\Bin\..\include\string.h

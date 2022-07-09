@@ -45,5 +45,4 @@ logisticssortingrobot\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/inc
 logisticssortingrobot\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 logisticssortingrobot\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 logisticssortingrobot\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
-logisticssortingrobot\freertos.o: ../Peripheral_Module/Serial.h
-logisticssortingrobot\freertos.o: ../Peripheral_Module/LEDModule.h
+logisticssortingrobot\freertos.o: ../Layer_FunctionModule/Serial.h

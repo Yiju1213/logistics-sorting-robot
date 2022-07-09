@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Peripheral_Module;../User_Layer</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Layer_Application;../Layer_FunctionModule;../Layer_Mechanical;../Layer_TaskExecute</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -795,52 +795,77 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Peripheral_Module</GroupName>
+          <GroupName>FML</GroupName>
           <Files>
+            <File>
+              <FileName>AirPump.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Layer_FunctionModule\AirPump.c</FilePath>
+            </File>
             <File>
               <FileName>KeyModule.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Peripheral_Module\KeyModule.c</FilePath>
+              <FilePath>..\Layer_FunctionModule\KeyModule.c</FilePath>
             </File>
             <File>
               <FileName>LEDModule.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Peripheral_Module\LEDModule.c</FilePath>
-            </File>
-            <File>
-              <FileName>PeripheralTest.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Peripheral_Module\PeripheralTest.c</FilePath>
-            </File>
-            <File>
-              <FileName>UltraSonic.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Peripheral_Module\UltraSonic.c</FilePath>
+              <FilePath>..\Layer_FunctionModule\LEDModule.c</FilePath>
             </File>
             <File>
               <FileName>Serial.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Peripheral_Module\Serial.c</FilePath>
+              <FilePath>..\Layer_FunctionModule\Serial.c</FilePath>
             </File>
             <File>
               <FileName>Stepper.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Peripheral_Module\Stepper.c</FilePath>
+              <FilePath>..\Layer_FunctionModule\Stepper.c</FilePath>
             </File>
             <File>
               <FileName>Switch.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Peripheral_Module\Switch.c</FilePath>
+              <FilePath>..\Layer_FunctionModule\Switch.c</FilePath>
+            </File>
+            <File>
+              <FileName>UltraSonic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Layer_FunctionModule\UltraSonic.c</FilePath>
+            </File>
+            <File>
+              <FileName>WeighingSensor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Layer_FunctionModule\WeighingSensor.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>Logical_Layer</GroupName>
+          <GroupName>MEL</GroupName>
           <Files>
             <File>
-              <FileName>FML.c</FileName>
+              <FileName>Mechanism.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User_Layer\FML.c</FilePath>
+              <FilePath>..\Layer_Mechanical\Mechanism.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>TEL</GroupName>
+          <Files>
+            <File>
+              <FileName>TaskExecute.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Layer_TaskExecute\TaskExecute.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>APL</GroupName>
+          <Files>
+            <File>
+              <FileName>Application.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Layer_Application\Application.c</FilePath>
             </File>
           </Files>
         </Group>

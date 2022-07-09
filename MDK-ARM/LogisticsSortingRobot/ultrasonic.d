@@ -1,5 +1,5 @@
-logisticssortingrobot\ultrasonic.o: ..\Peripheral_Module\UltraSonic.c
-logisticssortingrobot\ultrasonic.o: ..\Peripheral_Module\UltraSonic.h
+logisticssortingrobot\ultrasonic.o: ..\Layer_FunctionModule\UltraSonic.c
+logisticssortingrobot\ultrasonic.o: ..\Layer_FunctionModule\UltraSonic.h
 logisticssortingrobot\ultrasonic.o: E:\Keil v5.36\ARM\ARMCC\Bin\..\include\stdint.h
 logisticssortingrobot\ultrasonic.o: ../Core/Inc/tim.h
 logisticssortingrobot\ultrasonic.o: ../Core/Inc/main.h

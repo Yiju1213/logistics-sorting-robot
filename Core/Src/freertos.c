@@ -35,10 +35,16 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define SERIAL_RX_QUEUE_LEN		32
-#define SERIAL_RX_QUEUE_SIZE	(3 + SERIAL_DATABYTE)
-#define STEPPER_QUEUE_LEN		32
-#define STEPPER_QUEUE_SIZE		(SERIAL_DATABYTE)
+#define SERIAL_RX_QUEUE_LEN		8
+#define SERIAL_RX_QUEUE_SIZE		(3 + SERIAL_DATABYTE)
+#define JOINT_QUEUE_LEN			8
+#define JOINT_QUEUE_SIZE			5 // 1 + 2 + 2
+#define COOR_QUEUE_LEN			8
+#define COOR_QUEUE_SIZE			(SERIAL_DATABYTE - 2)
+#define PRESSURE_QUEUE_LEN		2
+#define PRESSURE_QUEUE_SIZE		4
+#define RANGE_QUEUE_LEN			2
+#define RANGE_QUEUE_SIZE			4
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -49,12 +55,19 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 QueueHandle_t Serial_Queue;
-QueueHandle_t Stepper_Queue;
+QueueHandle_t JointDrive_Queue;
+QueueHandle_t Coordinate_Queue;
+QueueHandle_t PressureSensor_Queue;
+QueueHandle_t RangingSensor_Queue;
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
-osThreadId TestTaskHandle;
+osThreadId JointTaskHandle;
 osThreadId RangingTaskHandle;
 osThreadId SerialTaskHandle;
+osThreadId WeighingTaskHandle;
+osThreadId AppTaskHandle;
+osSemaphoreId SYNC_SignalHandle;
+osSemaphoreId CameraOpen_SigalHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -62,9 +75,11 @@ osThreadId SerialTaskHandle;
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
-void TestTaskFunc(void const * argument);
+void JointTaskFunc(void const * argument);
 void RangingTaskFunc(void const * argument);
 void SerialTaskFunc(void const * argument);
+void WeighingTaskFunc(void const * argument);
+void AppTaskFunc(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -114,6 +129,15 @@ void MX_FREERTOS_Init(void) {
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
 
+  /* Create the semaphores(s) */
+  /* definition and creation of SYNC_Signal */
+  osSemaphoreDef(SYNC_Signal);
+  SYNC_SignalHandle = osSemaphoreCreate(osSemaphore(SYNC_Signal), 1);
+
+  /* definition and creation of CameraOpen_Sigal */
+  osSemaphoreDef(CameraOpen_Sigal);
+  CameraOpen_SigalHandle = osSemaphoreCreate(osSemaphore(CameraOpen_Sigal), 1);
+
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
@@ -129,8 +153,23 @@ void MX_FREERTOS_Init(void) {
 	{
 	  // Queue Create Error
 	}
-	Stepper_Queue = xQueueCreate((UBaseType_t)STEPPER_QUEUE_LEN,(UBaseType_t)STEPPER_QUEUE_SIZE);
-	if(NULL == Stepper_Queue)
+	JointDrive_Queue = xQueueCreate((UBaseType_t)JOINT_QUEUE_LEN,(UBaseType_t)JOINT_QUEUE_SIZE);
+	if(NULL == JointDrive_Queue)
+	{
+	  // Queue Create Error
+	}
+	Coordinate_Queue = xQueueCreate((UBaseType_t)COOR_QUEUE_LEN,(UBaseType_t)COOR_QUEUE_SIZE);
+	if(NULL == Coordinate_Queue)
+	{
+	  // Queue Create Error
+	}
+	PressureSensor_Queue = xQueueCreate((UBaseType_t)PRESSURE_QUEUE_LEN,(UBaseType_t)PRESSURE_QUEUE_SIZE);
+	if(NULL == PressureSensor_Queue)
+	{
+	  // Queue Create Error
+	}
+	RangingSensor_Queue = xQueueCreate((UBaseType_t)RANGE_QUEUE_LEN,(UBaseType_t)RANGE_QUEUE_SIZE);
+	if(NULL == RangingSensor_Queue)
 	{
 	  // Queue Create Error
 	}
@@ -138,12 +177,12 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityIdle, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
-  /* definition and creation of TestTask */
-  osThreadDef(TestTask, TestTaskFunc, osPriorityNormal, 0, 128);
-  TestTaskHandle = osThreadCreate(osThread(TestTask), NULL);
+  /* definition and creation of JointTask */
+  osThreadDef(JointTask, JointTaskFunc, osPriorityAboveNormal, 0, 128);
+  JointTaskHandle = osThreadCreate(osThread(JointTask), NULL);
 
   /* definition and creation of RangingTask */
   osThreadDef(RangingTask, RangingTaskFunc, osPriorityNormal, 0, 128);
@@ -152,6 +191,14 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of SerialTask */
   osThreadDef(SerialTask, SerialTaskFunc, osPriorityNormal, 0, 128);
   SerialTaskHandle = osThreadCreate(osThread(SerialTask), NULL);
+
+  /* definition and creation of WeighingTask */
+  osThreadDef(WeighingTask, WeighingTaskFunc, osPriorityNormal, 0, 128);
+  WeighingTaskHandle = osThreadCreate(osThread(WeighingTask), NULL);
+
+  /* definition and creation of AppTask */
+  osThreadDef(AppTask, AppTaskFunc, osPriorityHigh, 0, 256);
+  AppTaskHandle = osThreadCreate(osThread(AppTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -177,22 +224,22 @@ void StartDefaultTask(void const * argument)
   /* USER CODE END StartDefaultTask */
 }
 
-/* USER CODE BEGIN Header_TestTaskFunc */
+/* USER CODE BEGIN Header_JointTaskFunc */
 /**
-* @brief Function implementing the TestTask thread.
+* @brief Function implementing the JointTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_TestTaskFunc */
-__weak void TestTaskFunc(void const * argument)
+/* USER CODE END Header_JointTaskFunc */
+__weak void JointTaskFunc(void const * argument)
 {
-  /* USER CODE BEGIN TestTaskFunc */
+  /* USER CODE BEGIN JointTaskFunc */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END TestTaskFunc */
+  /* USER CODE END JointTaskFunc */
 }
 
 /* USER CODE BEGIN Header_RangingTaskFunc */
@@ -229,6 +276,42 @@ __weak void SerialTaskFunc(void const * argument)
     osDelay(1);
   }
   /* USER CODE END SerialTaskFunc */
+}
+
+/* USER CODE BEGIN Header_WeighingTaskFunc */
+/**
+* @brief Function implementing the WeighingTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_WeighingTaskFunc */
+__weak void WeighingTaskFunc(void const * argument)
+{
+  /* USER CODE BEGIN WeighingTaskFunc */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END WeighingTaskFunc */
+}
+
+/* USER CODE BEGIN Header_AppTaskFunc */
+/**
+* @brief Function implementing the AppTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_AppTaskFunc */
+__weak void AppTaskFunc(void const * argument)
+{
+  /* USER CODE BEGIN AppTaskFunc */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END AppTaskFunc */
 }
 
 /* Private application code --------------------------------------------------*/
